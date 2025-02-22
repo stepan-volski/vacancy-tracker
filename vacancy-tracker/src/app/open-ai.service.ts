@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OpenAIService {
   private apiUrl = 'https://api.openai.com/v1/chat/completions';
-  private apiKey =
-    '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';
+  private apiKey = environment.openAI_apiKey;
 
   constructor(private http: HttpClient) {}
 

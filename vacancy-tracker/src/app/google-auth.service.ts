@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '../environments/environment';
 
 declare const google: any;
 
@@ -7,7 +8,7 @@ declare const google: any;
   providedIn: 'root'
 })
 export class GoogleAuthService {
-  private clientId = '37001374079-ek7ufuj9rkeur308nmaalu67dd4lo03i.apps.googleusercontent.com'; // Replace with your Client ID
+  private clientId = environment.google_clientId;
   private tokenSubject = new BehaviorSubject<string | null>(null);
   public accessToken$ = this.tokenSubject.asObservable();
 
