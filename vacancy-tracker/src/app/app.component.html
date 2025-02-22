@@ -1,2 +1,3 @@
-<button (click)="signIn()">Sign in with Google</button>
-<button (click)="updateSheet()">Update Google Sheet</button>
+<button (click)="signIn()">Sign in</button>
+<input type="text" [(ngModel)]="urlInput">
+<button (click)="addVacancyToSheet(urlInput)">Add Vacancy</button>
