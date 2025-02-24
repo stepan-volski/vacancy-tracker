@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { GoogleSheetService } from './google-sheet.service';
-import { GoogleAuthService } from './google-auth.service';
+import { GoogleService } from './google.service';
 import { OpenAIService } from './open-ai.service';
 import { ScreenshotService } from './screenshot.service';
 
@@ -11,8 +10,7 @@ import { ScreenshotService } from './screenshot.service';
 })
 export class AppComponent {
   constructor(
-    private authService: GoogleAuthService,
-    private sheetsService: GoogleSheetService,
+    private googleService: GoogleService,
     private openAIService: OpenAIService,
     private screenshotService: ScreenshotService
   ) {}
@@ -20,7 +18,7 @@ export class AppComponent {
   urlInput = '';
 
   signIn() {
-    this.authService.signIn();
+    this.googleService.signIn();
   }
 
   getDate(): string {
@@ -39,7 +37,7 @@ export class AppComponent {
         .subscribe((response) => {
           const company = (response as any)['choices'][0].message.content.split('**')[0];
           const position = (response as any)['choices'][0].message.content.split('**')[1];
-          this.sheetsService.updateCell('Sheet1!A1', [this.getDate(), company, position, this.urlInput])
+          this.googleService.updateCell('Sheet1!A1', [this.getDate(), company, position, this.urlInput])
           ?.subscribe();
         });
     });
